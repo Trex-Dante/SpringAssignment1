@@ -35,7 +35,7 @@ public class CourseSelector {
     }
 
     public String[] getUndergraduateModules() {
-        return courses.getUndergroundCourses();
+        return courses.getUndergraduateCourses();
     }
 
     @Autowired
