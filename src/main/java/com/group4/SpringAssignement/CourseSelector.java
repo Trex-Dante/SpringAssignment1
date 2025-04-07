@@ -20,9 +20,9 @@ public class CourseSelector {
 
     public CourseSelector() {
         // Initialize with 3 arrays containing 2, 4, and 5 items respectively
-        courses.add(new Courses("Foundation Courses", new String[]{"Introduction to computer science", "Data Structure"}));
-        courses.add(new Courses("Undergraduate Courses", new String[]{"Algorithms", "Computer network", "Software Engineering"}));
-        courses.add(new Courses("Honors Courses", new String[]{"Advanced Algorithms", "Machine Learning", "Distributed systems", "Cybersecurity"}));
+        courses.add(new Courses("Foundation Courses", new String[]{"Computer Literacy for Science", "Introduction to Programming Concepts"}));
+        courses.add(new Courses("Undergraduate Courses", new String[]{"Data Structure & Algorithms", "Introduction to Computer Networks", "Software Engineering","Elementary Computer Programming","Computer Architecture and Organisation"}));
+        courses.add(new Courses("Honors Courses", new String[]{"Advanced Algorithms", "Intelligent Systems", "Distributed and Parallel Computing", "Advanced Java"}));
     }
     
     @Autowired
