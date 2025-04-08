@@ -19,20 +19,18 @@ public class CourseController {
         return courseSelector.getCourses();
     }
 
-    @GetMapping("/undergraduate")
-    public Map<String, String[]> getUndergraduateCourses()
-    {
-        return Map.of(
-                "Undergraduate Courses",courses.getUndergraduateModules());
+   // READ ONE - Get course by name
+    @GetMapping("/{name}")
+    public ResponseEntity<Courses> getCourseByName(@PathVariable String name) {
+        return courseSelector.getCoursesByName(name);
     }
 
-    @GetMapping("/honors")
-    public Map<String, String[]> getHonorsCourses()
-    {
-        return Map.of(
-                "Honors Courses",courses.getHonorsModules());
+   // READ ONE - Get course by name
+    @GetMapping("/{name}")
+    public ResponseEntity<Courses> getCourseByName(@PathVariable String name) {
+        return courseSelector.getCoursesByName(name);
     }
-
+    
     @GetMapping("/all")
     public Map<String, String[]> getAllData() {
         return Map.of(
