@@ -1,4 +1,4 @@
-package com.group4.SpringAssignement;
+package com.group4.SpringAssignement1;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
