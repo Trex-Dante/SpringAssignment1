@@ -30,14 +30,16 @@ public class CourseController {
     public ResponseEntity<Courses> getCourseByName(@PathVariable String name) {
         return courseSelector.getCoursesByName(name);
     }
-    
-    @GetMapping("/all")
-    public Map<String, String[]> getAllData() {
-        return Map.of(
-                "Foundation Courses", courses.getFoundationModules(),
-                "Undergraduate Courses", courses.getUndergraduateModules(),
-                "Honors Courses", courses.getHonorsModules()
-        );
+    // CREATE - Add new Courses
+    @PostMapping
+    public void  createArray(@RequestBody Courses newCourse) {
+        courseSelector.createCourse(newCourse);
     }
 
+
+// DELETE - Remove a course
+    @DeleteMapping("/{name}")
+    public void deleteArray(@PathVariable String name) {
+        courseSelector.deleteCourse(name);
+    }
 }
