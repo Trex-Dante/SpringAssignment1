@@ -11,13 +11,12 @@ import java.util.List;
 public class CourseController {
 
     @Autowired
-    CourseSelector courses;
+   CourseSelector courseSelector;
 
-
-    @GetMapping("/foundation")
-    public Map<String, String[]> getFoundationCourses() {
-        return Map.of(
-                "Foundation Courses",courses.getFoundationModules());
+     //READ ONE - Get course by name
+    @GetMapping
+     public List<Courses> getAllCourses() {
+        return courseSelector.getCourses();
     }
 
     @GetMapping("/undergraduate")
