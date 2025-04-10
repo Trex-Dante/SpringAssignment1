@@ -34,24 +34,10 @@ public class CourseSelector {
     public String[] getFoundationModules() {
         return courses.getFoundationCourses();
     }
-
-    @Autowired
-    public void setUndergraduateModules() {
-        courses.setUndergraduateCourses(UndergraduateCourses);
-    }
-
-    public String[] getUndergraduateModules() {
-        return courses.getUndergraduateCourses();
-    }
-
-    @Autowired
-    public void setHonorsModules() {
-        courses.setHonorsCourses(HonorsCourses);
-    }
-
-    public String[] getHonorsModules() {
-        return courses.getHonorsCourses();
-    }
-
-
-}
+ return foundCourse.map(ResponseEntity::ok)
+                 .orElse(ResponseEntity.notFound().build());
+     }
+ 
+     public void createCourse(@RequestBody Courses newCourse) {
+         courses.add(newCourse);
+ 
