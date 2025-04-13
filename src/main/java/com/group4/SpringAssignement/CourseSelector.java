@@ -15,29 +15,45 @@ import java.util.Optional;
 @Service
 public class CourseSelector {
 
-    // Initialize with three different arrays
     List<Courses> courses = new ArrayList<>();
 
     public CourseSelector() {
-        // Initialize with 3 arrays containing 2, 4, and 5 items respectively
+
         courses.add(new Courses("Foundation Courses", new String[]{"Computer Literacy for Science", "Introduction to Programming Concepts"}));
         courses.add(new Courses("Undergraduate Courses", new String[]{"Data Structure & Algorithms", "Introduction to Computer Networks", "Software Engineering","Elementary Computer Programming","Computer Architecture and Organisation"}));
         courses.add(new Courses("Honors Courses", new String[]{"Advanced Algorithms", "Intelligent Systems", "Distributed and Parallel Computing", "Advanced Java"}));
     }
     
-    @Autowired
-    public void setFoundationModules() {
-        courses.setFoundationCourses(FoundationCourses);
+    public List<Courses> getCourses() {
+        return courses;
+    }
+
+    public ResponseEntity<Courses> getCoursesByName(@PathVariable String name) {
+        Optional<Courses> foundCourse = courses.stream()
+                .filter(array -> array.getCourseName().equalsIgnoreCase(name))
+                .findFirst();
+
+        return foundCourse.map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    public void createCourse(@RequestBody Courses newCourse) {
+        courses.add(newCourse);
 
     }
 
-    public String[] getFoundationModules() {
-        return courses.getFoundationCourses();
+    public void updateCourses(@RequestBody Courses updateCourses) {
+        int i = 0;
+        for (Courses courses : courses) {
+            if (courses.getCourseName().equals(updateCourses.getCourseName())) {
+                i = getCourses().indexOf(courses);
+            }
+        }
+        courses.set(i, updateCourses);
     }
- return foundCourse.map(ResponseEntity::ok)
-                 .orElse(ResponseEntity.notFound().build());
-     }
- 
-     public void createCourse(@RequestBody Courses newCourse) {
-         courses.add(newCourse);
- 
+
+    public void deleteCourse(@PathVariable String name) {
+        boolean removed = courses.removeIf(array -> array.getCourseName().equalsIgnoreCase(name));
+    }
+}
+  
