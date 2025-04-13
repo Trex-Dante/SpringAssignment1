@@ -1,18 +1,16 @@
 package com.group4.SpringAssignement;
 
-
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
-
-import java.util.Arrays;
-
-@Component
-@Service
 public class Courses {
+    private String CourseName;
+    private String[] CourseModules;
 
-    private String[] FoundationCourses;
-    private String[] UndergroundCourses;
-    private String[] HonorsCourses;
+    // Constructors
+    public Courses() {}
+
+    public Courses(String CourseName, String[] CourseModules) {
+        this.CourseName = CourseName;
+        this.CourseModules = CourseModules;
+    }
 
     public String[] getFoundationCourses() {
         return FoundationCourses;
