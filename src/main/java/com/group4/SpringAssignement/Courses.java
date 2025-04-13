@@ -12,36 +12,20 @@ public class Courses {
         this.CourseModules = CourseModules;
     }
 
-    public String[] getFoundationCourses() {
-        return FoundationCourses;
+    // Getters and setters
+    public String getCourseName() {
+        return CourseName;
     }
 
-    public void setFoundationCourses(String[] foundationCourses) {
-        this.FoundationCourses = foundationCourses;
+    public void setCourseName(String CourseName) {
+        this.CourseName = CourseName;
     }
 
-    public String[] getUndergroundCourses() {
-        return UndergroundCourses;
+    public String[] getCourseModules() {
+        return CourseModules;
     }
 
-    public void setUndergraduateCourses(String[] undergroundCourses) {
-        this.UndergroundCourses = undergroundCourses;
-    }
-
-    public String[] getHonorsCourses() {
-        return HonorsCourses;
-    }
-
-    public void setHonorsCourses(String[] honorsCourses) {
-        this.HonorsCourses = honorsCourses;
-    }
-
-    @Override
-    public String toString() {
-        return "Courses{" +
-                "FoundationCourses=" + Arrays.toString(FoundationCourses) +
-                ", UndergroundCourses=" + Arrays.toString(UndergroundCourses) +
-                ", HonorsCourses=" + Arrays.toString(HonorsCourses) +
-                '}';
+    public void setCourseModules(String[] CourseModules) {
+        this.CourseModules = CourseModules;
     }
 }
