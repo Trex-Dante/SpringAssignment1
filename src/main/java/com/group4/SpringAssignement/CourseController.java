@@ -29,7 +29,7 @@ public class CourseController {
     }
 
     // CREATE - Add new Courses
-    @PostMapping("/{name}")
+    @PostMapping
     public void  createArray(@Valid @RequestBody Courses newCourse) {
         courseSelector.createCourse(newCourse);
     }
