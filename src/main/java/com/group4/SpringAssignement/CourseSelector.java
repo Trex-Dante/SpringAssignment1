@@ -1,12 +1,14 @@
 package com.group4.SpringAssignement;
 
+import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.Validated;
-import org.springframework.web.bind.annotation.Valid;
+import org.springframework.web.server.ResponseStatusException;
 
 
 import java.util.ArrayList;
@@ -37,8 +39,8 @@ public class CourseSelector {
                 .filter(array -> array.getCourseName().equalsIgnoreCase(name))
                 .findFirst();
 
-                if (foundCourses == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, 
+                if (foundCourse.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,
                 "Course type not found");
         }
 
@@ -62,15 +64,10 @@ public class CourseSelector {
     }
 
     public void deleteCourse(@Valid @PathVariable String name) {
-        if (!courses.containsKey(type.toLowerCase())) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, 
-                "Course type not found");
         boolean removed = courses.removeIf(array -> array.getCourseName().equalsIgnoreCase(name));
          if (!removed) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, 
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,
                 "Module not found in specified course");
         }
-        
-    }
 }
-} 
+}

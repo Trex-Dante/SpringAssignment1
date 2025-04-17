@@ -1,5 +1,8 @@
-package com.group4.SpringAssignement1;
+package com.group4.SpringAssignement;
 
+import com.group4.SpringAssignement.CourseSelector;
+import com.group4.SpringAssignement.Courses;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,7 +14,7 @@ import java.util.List;
 public class CourseController {
 
     @Autowired
-   CourseSelector courseSelector;
+    CourseSelector courseSelector;
 
      //READ ONE - Get course by name
     @GetMapping
@@ -21,15 +24,10 @@ public class CourseController {
 
    // READ ONE - Get course by name
     @GetMapping("/{name}")
-    public ResponseEntity<Courses> getCourseByName(@PathVariable String name) {
-        return courseSelector.getCoursesByName(name);
-    }
-
-   // READ ONE - Get course by name
-    @GetMapping("/{name}")
     public ResponseEntity<Courses> getCourseByName(@Valid @PathVariable String name) {
         return courseSelector.getCoursesByName(name);
     }
+
     // CREATE - Add new Courses
     @PostMapping("/{name}")
     public void  createArray(@Valid @RequestBody Courses newCourse) {
