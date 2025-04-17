@@ -1,7 +1,12 @@
 package com.group4.SpringAssignement;
 
 public class Courses {
+    @NotBlank(message = "Module name is required")
+    @Size(min = 3, max = 100, message = "Module name must be between 3 and 100 characters")
     private String CourseName;
+    @NotBlank(message = "Course type is required")
+    @Pattern(regexp = "foundation|undergraduate|honors", 
+             message = "Course type must be foundation, undergraduate, or honors")
     private String[] CourseModules;
 
     // Constructors
@@ -9,7 +14,8 @@ public class Courses {
 
     public Courses(String CourseName, String[] CourseModules) {
         this.CourseName = CourseName;
-        this.CourseModules = CourseModules;
+        this.CourseModules = CourseModules
+        ;
     }
 
     // Getters and setters
@@ -29,3 +35,5 @@ public class Courses {
         this.CourseModules = CourseModules;
     }
 }
+
+   

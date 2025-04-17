@@ -5,6 +5,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.Validated;
+import org.springframework.web.bind.annotation.Valid;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +16,7 @@ import java.util.Optional;
 
 @RestController
 @Service
+@Validated
 public class CourseSelector {
 
     List<Courses> courses = new ArrayList<>();
@@ -28,16 +32,21 @@ public class CourseSelector {
         return courses;
     }
 
-    public ResponseEntity<Courses> getCoursesByName(@PathVariable String name) {
+    public ResponseEntity<Courses> getCoursesByName(@Valid @PathVariable String name) {
         Optional<Courses> foundCourse = courses.stream()
                 .filter(array -> array.getCourseName().equalsIgnoreCase(name))
                 .findFirst();
+
+                if (foundCourses == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, 
+                "Course type not found");
+        }
 
         return foundCourse.map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    public void createCourse(@RequestBody Courses newCourse) {
+    public void createCourse(@Valid @RequestBody Courses newCourse) {
         courses.add(newCourse);
 
     }
@@ -52,8 +61,16 @@ public class CourseSelector {
         courses.set(i, updateCourses);
     }
 
-    public void deleteCourse(@PathVariable String name) {
+    public void deleteCourse(@Valid @PathVariable String name) {
+        if (!courses.containsKey(type.toLowerCase())) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, 
+                "Course type not found");
         boolean removed = courses.removeIf(array -> array.getCourseName().equalsIgnoreCase(name));
+         if (!removed) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, 
+                "Module not found in specified course");
+        }
+        
     }
 }
-  
+} 

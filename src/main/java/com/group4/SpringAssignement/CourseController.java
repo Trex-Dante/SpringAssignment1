@@ -27,19 +27,19 @@ public class CourseController {
 
    // READ ONE - Get course by name
     @GetMapping("/{name}")
-    public ResponseEntity<Courses> getCourseByName(@PathVariable String name) {
+    public ResponseEntity<Courses> getCourseByName(@Valid @PathVariable String name) {
         return courseSelector.getCoursesByName(name);
     }
     // CREATE - Add new Courses
-    @PostMapping
-    public void  createArray(@RequestBody Courses newCourse) {
+    @PostMapping("/{name}")
+    public void  createArray(@Valid @RequestBody Courses newCourse) {
         courseSelector.createCourse(newCourse);
     }
 
 
 // DELETE - Remove a course
     @DeleteMapping("/{name}")
-    public void deleteArray(@PathVariable String name) {
+    public void deleteArray(@Valid @PathVariable String name) {
         courseSelector.deleteCourse(name);
     }
 }
