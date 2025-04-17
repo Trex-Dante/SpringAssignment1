@@ -40,4 +40,10 @@ public class CourseController {
     public void deleteArray(@Valid @PathVariable String name) {
         courseSelector.deleteCourse(name);
     }
+
+//UPDATE - Update a course
+    @PutMapping("/{name}")
+    public void updateCourses(@RequestBody Courses newModule) {
+        courseSelector.updateCourses(newModule);
+    }
 }
